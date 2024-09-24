@@ -1,3 +1,5 @@
 celery -A MedimopsBackend worker -l info -P gevent
 
 celery -A MedimopsBackend beat -l INFO
+
+ celery -A MedimopsBackend purge
