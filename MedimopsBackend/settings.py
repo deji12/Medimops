@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -121,6 +122,8 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
+STATICFILES_STORAGE = "whitenoise.storage.CompresedManifestStaticFilesStorage"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -131,7 +134,7 @@ LOGIN_URL= 'login'
 CELERY_BEAT_SCHEDULE = {
     'run-bot-task-every-2-hours': { 
         'task': 'Core.tasks.run_bot_task',  
-        'schedule': 600.0, 
+        'schedule': 700.0, 
     },
 }
 

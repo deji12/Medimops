@@ -7,6 +7,7 @@ from gologin import GoLogin
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .config import *
+from Core.models import BotControl
 
 class Bot:
     def __init__(self, email, password, gologin_token, profile_id, headless=True):
@@ -18,6 +19,7 @@ class Bot:
         self.login_url = "https://www.medimops.de/Mein-Konto/"
         self.wishlist_url = "https://www.medimops.de/MeinMerkzettel/"
         self.cart_url = "https://www.medimops.de/Warenkorb/"
+        self.item_max_price = BotControl.objects.last().max_price
 
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKBLUE}Initializing GoLogin with profile ID: {profile_id}{ENDC}")
         # Initialize GoLogin
@@ -94,6 +96,8 @@ class Bot:
 
     def __add_wishlist_items_to_cart(self):
         """Retrieve products where the back again email switch is on and add them to the cart."""
+
+        ITEM_MAX_PRICE = self.item_max_price
         
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Navigating to wishlist page...{ENDC}")
         self.driver.get(self.wishlist_url)
@@ -383,6 +387,8 @@ class Bot:
         # click buy now button
         checkout_button = self.driver.find_element(By.CLASS_NAME, 'checkout-navigation-buttons__button-next')
         checkout_button.click()
+
+        time.sleep(100)
 
     def stop(self):
         """Stop the GoLogin profile session."""
