@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container full-height d-flex flex-column justify-content-center align-items-center">
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Card Holder Name Field -->
+            <div class="mb-3">
+                <label for="card_holder_name" class="form-label">Card Holder Name:</label>
+                <input type="text" class="form-control" id="card_holder_name" placeholder="John Doe" name="card_holder_name" 
+                       value="{{ bot.card_holder_name|default:'' }}" required>
+            </div>
+            
+            <!-- Card Number Field -->
+            <div class="mb-3">
+                <label for="card_number" class="form-label">Card Number:</label>
+                <input type="text" class="form-control" id="card_number" placeholder="1234 5678 9012 3456" name="card_number" 
+                       value="{{ bot.card_number|default:'' }}" required>
+            </div>
+
+            <!-- Expiration Date Fields (Month and Year as Select Dropdowns) -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="expiration_month" class="form-label">Expiration Month:</label>
+                    <select class="form-control" id="expiration_month" name="expiration_month" required>
+                        <option value="" selected disabled>Month</option>
+                        {% for month in months %}
+                            <option value="{{ month }}" {% if bot.expiration_month and bot.expiration_month == month|stringformat:"s" %}selected{% endif %}>
+                                {{ month }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="expiration_year" class="form-label">Expiration Year:</label>
+                    <select class="form-control" id="expiration_year" name="expiration_year" required>
+                        <option value="" selected disabled>Year</option>
+                        {% for year in years %}
+                            <option value="{{ year }}" {% if bot.expiration_year and bot.expiration_year == year|stringformat:"s" %}selected{% endif %}>
+                                {{ year }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- CVV Field -->
+            <div class="mb-3">
+                <label for="cvv" class="form-label">CVV:</label>
+                <input type="text" class="form-control" id="cvv" placeholder="123" name="cvv" maxlength="3" 
+                       value="{{ bot.cvv|default:'' }}" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

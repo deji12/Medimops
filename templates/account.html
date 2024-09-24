@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container full-height d-flex flex-column justify-content-center align-items-center">
+    <div class="form-container">
+        <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3 mt-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email" value="{{ bot.medimops_account_email|default:'' }}" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Password:</label>
+            <input type="text" class="form-control" id="pwd" placeholder="Enter password" value="{{ bot.medimops_account_password|default:'' }}" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container full-height d-flex flex-column justify-content-center align-items-center">
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Max Price Field -->
+            <div class="mb-3">
+                <label for="max_price" class="form-label">Item Max Price:</label>
+                <input type="text" class="form-control" id="max_price" {% if bot.max_price %} value="{{bot.max_price}}" {% endif %} placeholder="2000" name="max_price">
+            </div>
+            
+            <!-- Status Select Field -->
+            <div class="mb-3">
+                <label for="status" class="form-label">Status 
+                    (
+                        {% if bot.is_running %} 
+                            <span style="color: green;"><b>Running</b></span>
+                        {% else %}
+                            <span style="color: firebrick;"><b>Shut down</b></span>
+                        {% endif %}
+                    ):</label>
+                <select class="form-control" id="status" name="is_running">
+                    <option value="" disabled selected>Status</option>
+                    {% if bot.is_running %}
+                        <option value="True" selected>Run</option>
+                        <option value="False">Shut down</option>
+                    {% else %}
+                        <option value="False" selected>Shut down</option>
+                        <option value="True">Run</option>
+                    {% endif %}
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
