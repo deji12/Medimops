@@ -396,7 +396,7 @@ class Bot:
         self.add_products_to_cart()
         self.max_out_cart_items()
         self.checkout()
-        # self.stop()
+        self.stop()
 
 # Instantiate and use the bot
 # bot = Bot(EMAIL, PASSWORD, GOLOGIN_TOKEN, PROFILE_ID)

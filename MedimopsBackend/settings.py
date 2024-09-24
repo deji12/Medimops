@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%w#5*+p3ra4a3^3)o!k!b4_w-^evqlchnei8cu)gge3^7)kb18
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -131,7 +131,7 @@ LOGIN_URL= 'login'
 CELERY_BEAT_SCHEDULE = {
     'run-bot-task-every-2-hours': { 
         'task': 'Core.tasks.run_bot_task',  
-        'schedule': 7200.0, 
+        'schedule': 600.0, 
     },
 }
 

@@ -2,8 +2,9 @@ from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
 import subprocess
+import sys
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ElearningProject.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MedimopsBackend.settings')
 
 app = Celery('MedimopsBackend')
 
@@ -15,8 +16,8 @@ app.autodiscover_tasks()
 def start_celery_beat():
     with open('celery_beat.log', 'a') as f:
         subprocess.Popen(
-            ["celery", "-A", "MedimopsBackend", "beat"], 
-            stdout=f, stderr=f, shell=True
+            [sys.executable, "-m","celery", "-A", "MedimopsBackend", "beat", "-l", "INFO"], 
+            stdout=f, stderr=f
         )
 
 # Function to stop Celery Beat
@@ -27,8 +28,8 @@ def stop_celery_beat():
 def start_celery_worker():
     with open('celery_worker.log', 'a') as f:
         subprocess.Popen(
-            ["celery", "-A", "MedimopsBackend", "worker"], 
-            stdout=f, stderr=f, shell=True
+            [sys.executable, "-m", "celery", "-A", "MedimopsBackend", "worker", "--pool=threads", "--concurrency=10"], 
+            stdout=f, stderr=f
         )
 
 # Function to stop Celery Worker
