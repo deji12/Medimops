@@ -1,11 +1,11 @@
 # Define the path to your chromedriver
 from selenium.webdriver.chrome.service import Service
 
-CHROME_DRIVER_SERVICE = Service('/usr/local/bin/chromedriver')
+CHROME_DRIVER_SERVICE = Service('Bot/chromedriver.exe')
 
 GOLOGIN_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmViMGUzM2I1NmQ1NzBlMDc4MmJhOGYiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NmViMTRlNmQyNjkxMDEwNGViMDA3NGUifQ.Go4oW77gWn8G6fQ3IlCtoSBHlYg9r3HNlcAKQugn0qI"
 PROFILE_ID = "66eb35b3bf4f526b70788d60"
-PROFILE_PATH = '/opt/myproject/Medimops/Bot'
+PROFILE_PATH = r' C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Bot'
 
 # AUTHENTICATION
 EMAIL = "ptutsi@proton.me"

@@ -1,0 +1,162 @@
+[2024-09-25 11:01:19,644: WARNING/MainProcess] No hostname was supplied. Reverting to default 'localhost'
+ 
+ -------------- celery@DESKTOP-QI6H2EA v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.22631-SP0 2024-09-25 11:01:19
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         MedimopsBackend:0x2d2e411bcd0
+- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 10 (thread)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[2024-09-25 11:01:19,695: WARNING/MainProcess] C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2024-09-25 11:01:19,720: WARNING/MainProcess] C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2024-09-25 11:01:19,750: WARNING/MainProcess] No hostname was supplied. Reverting to default 'localhost'
+[2024-09-25 11:01:20,872: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mInitializing Bot with GoLogin profile...[0m
+[2024-09-25 11:01:20,874: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mInitializing GoLogin with profile ID: 66eb35b3bf4f526b70788d60[0m
+[2024-09-25 11:01:20,880: WARNING/MainProcess] start
+[2024-09-25 11:01:20,880: WARNING/MainProcess] createStartup
+[2024-09-25 11:01:20,880: WARNING/MainProcess]  
+[2024-09-25 11:01:20,880: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:01:21,921: WARNING/MainProcess] downloadProfileZip
+[2024-09-25 11:01:21,921: WARNING/MainProcess] s3path
+[2024-09-25 11:01:21,921: WARNING/MainProcess]  
+[2024-09-25 11:01:21,921: WARNING/MainProcess] 66eb35b3bf4f526b70788d60/d60c2464-cdb9-41da-ad5e-c128fb5ec140
+[2024-09-25 11:01:26,620: WARNING/MainProcess] extracting profile
+[2024-09-25 11:01:27,161: WARNING/MainProcess] profile extracted
+[2024-09-25 11:01:27,161: WARNING/MainProcess]  
+[2024-09-25 11:01:27,161: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:01:28,434: WARNING/MainProcess] writeCookiesFromServer
+[2024-09-25 11:01:28,434: WARNING/MainProcess]  
+[2024-09-25 11:01:28,434: WARNING/MainProcess] False
+[2024-09-25 11:01:29,568: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mStarting Chrome with GoLogin debugger address: 127.0.0.1:3500[0m
+[2024-09-25 11:01:30,314: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mLogging in to account...[0m
+[2024-09-25 11:01:44,639: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mHandling consent popup...[0m
+[2024-09-25 11:01:49,670: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mConsent popup handled successfully.[0m
+[2024-09-25 11:01:49,719: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [91mLogin error: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[name="lgn_usr"]"}
+  (Session info: chrome=128.0.6613.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF608249412+29090]
+	(No symbol) [0x00007FF6081BE239]
+	(No symbol) [0x00007FF60807B1DA]
+	(No symbol) [0x00007FF6080CEFE7]
+	(No symbol) [0x00007FF6080CF23C]
+	(No symbol) [0x00007FF6081197C7]
+	(No symbol) [0x00007FF6080F672F]
+	(No symbol) [0x00007FF6081165A2]
+	(No symbol) [0x00007FF6080F6493]
+	(No symbol) [0x00007FF6080C09D1]
+	(No symbol) [0x00007FF6080C1B31]
+	GetHandleVerifier [0x00007FF60856871D+3302573]
+	GetHandleVerifier [0x00007FF6085B4243+3612627]
+	GetHandleVerifier [0x00007FF6085AA417+3572135]
+	GetHandleVerifier [0x00007FF608305EB6+801862]
+	(No symbol) [0x00007FF6081C945F]
+	(No symbol) [0x00007FF6081C4FB4]
+	(No symbol) [0x00007FF6081C5140]
+	(No symbol) [0x00007FF6081B461F]
+	BaseThreadInitThunk [0x00007FFD3A32257D+29]
+	RtlUserThreadStart [0x00007FFD3AC4AF28+40]
+[0m
+[2024-09-25 11:01:49,719: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mNavigating to wishlist page...[0m
+[2024-09-25 11:02:15,379: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProcessing 2 products...[0m
+[2024-09-25 11:02:15,380: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdding product variants to cart...[0m
+[2024-09-25 11:02:49,890: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdded product variants to cart successfully[0m
+[2024-09-25 11:03:17,602: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdded product variants to cart successfully[0m
+[2024-09-25 11:03:17,603: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mMaxing out cart item quantities...[0m
+[2024-09-25 11:04:05,079: WARNING/MainProcess] \U0001f916 Script timed out, waiting for completion...
+[2024-09-25 11:06:01,800: WARNING/MainProcess] \U0001f916 Script completed successfully after timeout.
+[2024-09-25 11:06:01,801: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProceeding to checkout...[0m
+[2024-09-25 11:06:09,038: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mSelected card payment for checkout...[0m
+[2024-09-25 11:06:19,040: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mInputing card details...[0m
+[2024-09-25 11:08:28,835: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mStopping the bot and GoLogin session...[0m
+[2024-09-25 11:08:32,698: WARNING/MainProcess] commitProfile
+[2024-09-25 11:08:53,200: WARNING/MainProcess] commitProfile completed
+[2024-09-25 11:08:53,200: WARNING/MainProcess]  
+[2024-09-25 11:08:53,200: WARNING/MainProcess] <Response [200]>
+[2024-09-25 11:08:53,322: WARNING/MainProcess] profile stopped
+[2024-09-25 11:08:53,322: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mBot stopped successfully.[0m
+[2024-09-25 11:08:53,322: WARNING/MainProcess] Bot task completed successfully.
+[2024-09-25 11:09:28,740: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mInitializing Bot with GoLogin profile...[0m
+[2024-09-25 11:09:28,749: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mInitializing GoLogin with profile ID: 66eb35b3bf4f526b70788d60[0m
+[2024-09-25 11:09:28,751: WARNING/MainProcess] start
+[2024-09-25 11:09:28,751: WARNING/MainProcess] createStartup
+[2024-09-25 11:09:28,751: WARNING/MainProcess]  
+[2024-09-25 11:09:28,751: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:09:29,706: WARNING/MainProcess] downloadProfileZip
+[2024-09-25 11:09:29,706: WARNING/MainProcess] s3path
+[2024-09-25 11:09:29,706: WARNING/MainProcess]  
+[2024-09-25 11:09:29,706: WARNING/MainProcess] 66eb35b3bf4f526b70788d60/62ef4c03-2e43-4959-8e67-0bceb344cb71
+[2024-09-25 11:09:36,135: WARNING/MainProcess] extracting profile
+[2024-09-25 11:09:36,413: WARNING/MainProcess] profile extracted
+[2024-09-25 11:09:36,413: WARNING/MainProcess]  
+[2024-09-25 11:09:36,413: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:09:37,999: WARNING/MainProcess] writeCookiesFromServer
+[2024-09-25 11:09:37,999: WARNING/MainProcess]  
+[2024-09-25 11:09:37,999: WARNING/MainProcess] False
+[2024-09-25 11:09:38,549: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mStarting Chrome with GoLogin debugger address: 127.0.0.1:3500[0m
+[2024-09-25 11:09:39,122: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mLogging in to account...[0m
+[2024-09-25 11:10:08,414: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mHandling consent popup...[0m
+[2024-09-25 11:10:13,443: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mConsent popup handled successfully.[0m
+[2024-09-25 11:10:13,482: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [91mLogin error: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[name="lgn_usr"]"}
+  (Session info: chrome=128.0.6613.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF608249412+29090]
+	(No symbol) [0x00007FF6081BE239]
+	(No symbol) [0x00007FF60807B1DA]
+	(No symbol) [0x00007FF6080CEFE7]
+	(No symbol) [0x00007FF6080CF23C]
+	(No symbol) [0x00007FF6081197C7]
+	(No symbol) [0x00007FF6080F672F]
+	(No symbol) [0x00007FF6081165A2]
+	(No symbol) [0x00007FF6080F6493]
+	(No symbol) [0x00007FF6080C09D1]
+	(No symbol) [0x00007FF6080C1B31]
+	GetHandleVerifier [0x00007FF60856871D+3302573]
+	GetHandleVerifier [0x00007FF6085B4243+3612627]
+	GetHandleVerifier [0x00007FF6085AA417+3572135]
+	GetHandleVerifier [0x00007FF608305EB6+801862]
+	(No symbol) [0x00007FF6081C945F]
+	(No symbol) [0x00007FF6081C4FB4]
+	(No symbol) [0x00007FF6081C5140]
+	(No symbol) [0x00007FF6081B461F]
+	BaseThreadInitThunk [0x00007FFD3A32257D+29]
+	RtlUserThreadStart [0x00007FFD3AC4AF28+40]
+[0m
+[2024-09-25 11:10:13,482: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mNavigating to wishlist page...[0m
+[2024-09-25 11:10:41,162: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProcessing 2 products...[0m
+[2024-09-25 11:10:41,163: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdding product variants to cart...[0m
+[2024-09-25 11:11:21,684: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdded product variants to cart successfully[0m
+[2024-09-25 11:11:57,635: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdded product variants to cart successfully[0m
+[2024-09-25 11:11:57,635: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mMaxing out cart item quantities...[0m
+[2024-09-25 11:12:50,222: WARNING/MainProcess] \U0001f916 Script timed out, waiting for completion...
+[2024-09-25 11:16:07,596: WARNING/MainProcess] \U0001f916 Script completed successfully after timeout.
+[2024-09-25 11:16:07,596: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProceeding to checkout...[0m
+[2024-09-25 11:16:15,276: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mSelected card payment for checkout...[0m
+[2024-09-25 11:16:25,278: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mInputing card details...[0m
+[2024-09-25 11:18:34,292: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mStopping the bot and GoLogin session...[0m
+[2024-09-25 11:18:37,774: WARNING/MainProcess] commitProfile
+[2024-09-25 11:18:48,384: WARNING/MainProcess] commitProfile completed
+[2024-09-25 11:18:48,384: WARNING/MainProcess]  
+[2024-09-25 11:18:48,384: WARNING/MainProcess] <Response [200]>
+[2024-09-25 11:18:48,528: WARNING/MainProcess] profile stopped
+[2024-09-25 11:18:48,528: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mBot stopped successfully.[0m
+[2024-09-25 11:18:48,528: WARNING/MainProcess] Bot task completed successfully.
+[2024-09-25 11:21:08,668: WARNING/MainProcess] Bot is paused, no action taken.
+[2024-09-25 11:32:48,718: WARNING/MainProcess] Bot is paused, no action taken.

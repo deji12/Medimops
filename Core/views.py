@@ -48,12 +48,15 @@ def CardDetails(request):
 
     bot_controller = BotControl.objects.last()
 
+    card_types = ["Visa", "Mastercard", "American Express"]
+
     if request.method == "POST":
         card_number = request.POST.get('card_number')
         card_holder_name = request.POST.get('card_holder_name')
         expiry_month = request.POST.get('expiration_month')
         expiry_year = request.POST.get('expiration_year')
         cvv = request.POST.get('cvv')
+        card_type = request.POST.get('card_type')
 
         # f = Fernet(bot_controller.key)
 
@@ -71,6 +74,9 @@ def CardDetails(request):
 
         if cvv and bot_controller.cvv!= cvv:
             bot_controller.cvv = cvv
+
+        if card_types and bot_controller.card_type != card_type:
+            bot_controller.card_type = card_type
         
         bot_controller.save()
 
@@ -86,7 +92,8 @@ def CardDetails(request):
     context = {
         'months': months,
         'years': years,
-        'bot': bot_controller
+        'bot': bot_controller,
+        "card_types": card_types
     }
 
     return render(request, 'card.html', context)

@@ -1,0 +1,4 @@
+[2024-09-25 11:01:19,602: INFO/MainProcess] beat: Starting...
+[2024-09-25 11:09:28,686: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
+[2024-09-25 11:21:08,668: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
+[2024-09-25 11:32:48,668: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)

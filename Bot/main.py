@@ -10,7 +10,7 @@ from .config import *
 from Core.models import BotControl
 
 class Bot:
-    def __init__(self, email, password, gologin_token, profile_id, headless=True):
+    def __init__(self, email, password, gologin_token, profile_id, headless=False):
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Initializing Bot with GoLogin profile...{ENDC}")
 
         # Setting parameters
@@ -19,7 +19,7 @@ class Bot:
         self.login_url = "https://www.medimops.de/Mein-Konto/"
         self.wishlist_url = "https://www.medimops.de/MeinMerkzettel/"
         self.cart_url = "https://www.medimops.de/Warenkorb/"
-        self.item_max_price = BotControl.objects.last().max_price
+        self.control = BotControl.objects.last()
 
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKBLUE}Initializing GoLogin with profile ID: {profile_id}{ENDC}")
         # Initialize GoLogin
@@ -36,7 +36,7 @@ class Bot:
         # Set Chrome options to connect to GoLogin's profile
         chrome_options = Options()
         chrome_options.add_experimental_option("debuggerAddress", debugger_address)
-        chrome_options.binary_location = '/usr/bin/google-chrome'
+        # chrome_options.binary_location = '/usr/bin/google-chrome'
 
         if headless:
             chrome_options.add_argument("--headless")
@@ -98,7 +98,7 @@ class Bot:
     def __add_wishlist_items_to_cart(self):
         """Retrieve products where the back again email switch is on and add them to the cart."""
 
-        ITEM_MAX_PRICE = self.item_max_price
+        ITEM_MAX_PRICE = self.control.max_price
         
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Navigating to wishlist page...{ENDC}")
         self.driver.get(self.wishlist_url)
@@ -308,7 +308,7 @@ class Bot:
         card_type_select = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardType'))
         )
-        card_type_select.send_keys(CARD_TYPE)
+        card_type_select.send_keys(self.control.card_type)
 
         time.sleep(2)
 
@@ -319,7 +319,7 @@ class Bot:
         
         account_holder_input.send_keys(Keys.CONTROL + "a")  # Select all text
         account_holder_input.send_keys(Keys.DELETE)  # Delete the selected text
-        account_holder_input.send_keys(CARD_HOLDER_NAME)
+        account_holder_input.send_keys(self.control.card_holder_name)
 
         time.sleep(2)
 
@@ -330,7 +330,7 @@ class Bot:
         self.driver.switch_to.frame(card_number_iframe)
         card_number_input = self.driver.find_element(By.XPATH, "//input[@type='text']")
         card_number_input.clear()
-        card_number_input.send_keys(CARD_NUMBER)
+        card_number_input.send_keys(self.control.card_number)
         self.driver.switch_to.default_content()
 
         time.sleep(2)
@@ -347,7 +347,7 @@ class Bot:
         expiry_month_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardexpiremonth'))
         )
-        expiry_month_input.send_keys(str(VALID_UNTIL_MONTH))
+        expiry_month_input.send_keys(str(self.control.expiration_month))
 
         self.driver.switch_to.default_content()
 
@@ -361,7 +361,7 @@ class Bot:
         expiry_year_input =  WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardexpireyear'))
         )
-        expiry_year_input.send_keys(str(VALID_UNTIL_YEAR))
+        expiry_year_input.send_keys(str(self.control.expiration_year))
         
         self.driver.switch_to.default_content()
 
@@ -376,7 +376,7 @@ class Bot:
             EC.presence_of_element_located((By.ID, 'cardcvc2'))
         )
         cvv_input.clear()
-        cvv_input.send_keys(str(CVV))
+        cvv_input.send_keys(str(self.control.cvv))
 
         self.driver.switch_to.default_content()
 

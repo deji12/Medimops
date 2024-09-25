@@ -14,9 +14,9 @@ app.autodiscover_tasks()
 
 # Function to start Celery Beat and direct logs to a file
 def start_celery_beat():
-    with open('/var/log/celery_beat.log', 'a') as f:
+    with open('celery_beat.log', 'a') as f:
         subprocess.Popen(
-            ["celery", "-A", "MedimopsBackend", "beat", "-l", "INFO"], 
+            [sys.executable, "-m","celery", "-A", "MedimopsBackend", "beat", "-l", "INFO"], 
             stdout=f, stderr=f
         )
 
@@ -26,9 +26,10 @@ def stop_celery_beat():
 
 # Function to start Celery Worker and direct logs to a file
 def start_celery_worker():
-    with open('/var/log/celery_worker.log', 'a') as f:
+    with open('celery_worker.log', 'a') as f:
         subprocess.Popen(
-            ["celery", "-A", "MedimopsBackend", "worker", "--pool=threads", "--concurrency=10"], 
+            [sys.executable, "-m", "celery", "-A", "MedimopsBackend", "worker", "--pool=threads", "--concurrency=10"], 
+            
             stdout=f, stderr=f
         )
 
