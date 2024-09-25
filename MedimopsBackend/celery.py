@@ -1,3 +1,4 @@
+
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
@@ -14,9 +15,9 @@ app.autodiscover_tasks()
 
 # Function to start Celery Beat and direct logs to a file
 def start_celery_beat():
-    with open('celery_beat.log', 'a') as f:
+    with open('/var/log/celery_beat.log', 'a') as f:
         subprocess.Popen(
-            [sys.executable, "-m","celery", "-A", "MedimopsBackend", "beat", "-l", "INFO"], 
+            ["celery", "-A", "MedimopsBackend", "beat", "-l", "INFO"], 
             stdout=f, stderr=f
         )
 
@@ -26,10 +27,9 @@ def stop_celery_beat():
 
 # Function to start Celery Worker and direct logs to a file
 def start_celery_worker():
-    with open('celery_worker.log', 'a') as f:
+    with open('/var/log/celery_worker.log', 'a') as f:
         subprocess.Popen(
-            [sys.executable, "-m", "celery", "-A", "MedimopsBackend", "worker", "--pool=threads", "--concurrency=10"], 
-            
+            ["celery", "-A", "MedimopsBackend", "worker", "--pool=threads", "--concurrency=10"], 
             stdout=f, stderr=f
         )
 
