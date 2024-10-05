@@ -2,15 +2,16 @@
 
 {% block content %}
 <div class="container full-height d-flex flex-column justify-content-center align-items-center">
+    
     <div class="form-container">
+        {% if bot.is_running %}
+            <button class="btn btn-success" type="button" disabled style="width: 100%;margin-bottom:15px;">
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Running...
+            </button>
+        {% endif %}
         <form method="POST">
             {% csrf_token %}
-            
-            <!-- Max Price Field -->
-            <div class="mb-3">
-                <label for="max_price" class="form-label">Item Max Price:</label>
-                <input type="text" class="form-control" id="max_price" {% if bot.max_price %} value="{{bot.max_price}}" {% endif %} placeholder="2000" name="max_price">
-            </div>
             
             <!-- Status Select Field -->
             <div class="mb-3">
