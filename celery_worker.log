@@ -161,3 +161,293 @@ Stacktrace:
 [2024-09-25 11:21:08,668: WARNING/MainProcess] Bot is paused, no action taken.
 [2024-09-25 11:32:48,718: WARNING/MainProcess] Bot is paused, no action taken.
 [2024-09-25 11:44:28,719: WARNING/MainProcess] Bot is paused, no action taken.
+[2024-09-25 11:56:08,718: WARNING/MainProcess] Bot is paused, no action taken.
+[2024-09-25 11:56:13,474: WARNING/MainProcess] No hostname was supplied. Reverting to default 'localhost'
+ 
+ -------------- celery@DESKTOP-QI6H2EA v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.22631-SP0 2024-09-25 11:56:13
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         MedimopsBackend:0x2490948f990
+- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 10 (thread)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[2024-09-25 11:56:13,548: WARNING/MainProcess] C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\sit[2024-09-25 11:56:13,614: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mInitializing Bot with GoLogin profile...[0m
+[2024-09-25 11:56:13,625: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mInitializing GoLogin with profile ID: 66eb35b3bf4f526b70788d60[0m
+[2024-09-25 11:56:13,625: WARNING/MainProcess] start
+[2024-09-25 11:56:13,625: WARNING/MainProcess] createStartup
+[2024-09-25 11:56:13,625: WARNING/MainProcess]  
+[2024-09-25 11:56:13,625: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:56:15,254: WARNING/MainProcess] downloadProfileZip
+[2024-09-25 11:56:15,255: WARNING/MainProcess] s3path
+[2024-09-25 11:56:15,255: WARNING/MainProcess]  
+[2024-09-25 11:56:15,255: WARNING/MainProcess] 66eb35b3bf4f526b70788d60/0a97da78-335a-46a3-9ec7-1e90ca33bf90
+[2024-09-25 11:56:19,603: WARNING/MainProcess] extracting profile
+[2024-09-25 11:56:20,346: WARNING/MainProcess] profile extracted
+[2024-09-25 11:56:20,346: WARNING/MainProcess]  
+[2024-09-25 11:56:20,346: WARNING/MainProcess] C:\Users\Admin\AppData\Local\Temp\gologin_66eb35b3bf4f526b70788d60
+[2024-09-25 11:56:22,659: WARNING/MainProcess] extracting profile
+[2024-09-25 11:56:23,080: WARNING/MainProcess] writeCookiesFromServer
+[2024-09-25 11:56:23,080: WARNING/MainProcess]  
+[2024-09-25 11:56:23,080: WARNING/MainProcess] False
+[2024-09-25 11:56:23,319: WARNING/MainProcess] profile extracted
+[2024-09-25 11:56:23,319: WARNING/MainProcess
+worker: Hitting Ctrl+C again will terminate all running tasks!
+
+worker: Warm shutdown (MainProcess)
+f526b70788d60
+[2024-09-25 11:56:24,336: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mStarting Chrome with GoLogin debugger address: 127.0.0.1:3500[0m
+[2024-09-25 11:56:24,754: WARNING/MainProcess] writeCookiesFromServer
+[2024-09-25 11:56:24,754: WARNING/MainProcess]  
+[2024-09-25 11:56:24,754: WARNING/MainProcess] False
+[2024-09-25 11:56:24,769: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mStarting Chrome with GoLogin debugger address: 127.0.0.1:3500[0m
+[2024-09-25 11:56:24,881: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mLogging in to account...[0m
+[2024-09-25 11:56:24,925: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mLogging in to account...[0m
+[2024-09-25 11:56:26,422: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mHandling consent popup...[0m
+[2024-09-25 11:56:49,561: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [94mHandling consent popup...[0m
+[2024-09-25 11:56:49,578: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mConsent popup handled successfully.[0m
+[2024-09-25 11:56:49,643: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [91mLogin error: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[name="lgn_usr"]"}
+  (Session info: chrome=128.0.6613.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF74E6C9412+29090]
+	(No symbol) [0x00007FF74E63E239]
+	(No symbol) [0x00007FF74E4FB1DA]
+	(No symbol) [0x00007FF74E54EFE7]
+	(No symbol) [0x00007FF74E54F23C]
+	(No symbol) [0x00007FF74E5997C7]
+	(No symbol) [0x00007FF74E57672F]
+	(No symbol) [0x00007FF74E5965A2]
+	(No symbol) [0x00007FF74E576493]
+	(No symbol) [0x00007FF74E5409D1]
+	(No symbol) [0x00007FF74E541B31]
+	GetHandleVerifier [0x00007FF74E9E871D+3302573]
+	GetHandleVerifier [0x00007FF74EA34243+3612627]
+	GetHandleVerifier [0x00007FF74EA2A417+3572135]
+	GetHandleVerifier [0x00007FF74E785EB6+801862]
+	(No symbol) [0x00007FF74E64945F]
+	(No symbol) [0x00007FF74E644FB4]
+	(No symbol) [0x00007FF74E645140]
+	(No symbol) [0x00007FF74E63461F]
+	BaseThreadInitThunk [0x00007FFD3A32257D+29]
+	RtlUserThreadStart [0x00007FFD3AC4AF28+40]
+[0m
+[2024-09-25 11:56:49,645: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mNavigating to wishlist page...[0m
+[2024-09-25 11:57:02,925: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [92mConsent popup handled successfully.[0m
+[2024-09-25 11:57:02,958: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [91mLogin error: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[name="lgn_usr"]"}
+  (Session info: chrome=128.0.6613.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF74E6C9412+29090]
+	(No symbol) [0x00007FF74E63E239]
+	(No symbol) [0x00007FF74E4FB1DA]
+	(No symbol) [0x00007FF74E54EFE7]
+	(No symbol) [0x00007FF74E54F23C]
+	(No symbol) [0x00007FF74E5997C7]
+	(No symbol) [0x00007FF74E57672F]
+	(No symbol) [0x00007FF74E5965A2]
+	(No symbol) [0x00007FF74E576493]
+	(No symbol) [0x00007FF74E5409D1]
+	(No symbol) [0x00007FF74E541B31]
+	GetHandleVerifier [0x00007FF74E9E871D+3302573]
+	GetHandleVerifier [0x00007FF74EA34243+3612627]
+	GetHandleVerifier [0x00007FF74EA2A417+3572135]
+	GetHandleVerifier [0x00007FF74E785EB6+801862]
+	(No symbol) [0x00007FF74E64945F]
+	(No symbol) [0x00007FF74E644FB4]
+	(No symbol) [0x00007FF74E645140]
+	(No symbol) [0x00007FF74E63461F]
+	BaseThreadInitThunk [0x00007FFD3A32257D+29]
+	RtlUserThreadStart [0x00007FFD3AC4AF28+40]
+[0m
+[2024-09-25 11:57:02,958: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mNavigating to wishlist page...[0m
+[2024-09-25 11:57:16,334: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProcessing 2 products...[0m
+[2024-09-25 11:57:16,340: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdding product variants to cart...[0m
+[2024-09-25 11:57:39,757: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mProcessing 0 products...[0m
+[2024-09-25 11:57:39,758: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mAdding product variants to cart...[0m
+[2024-09-25 11:57:39,758: WARNING/MainProcess] \U0001f916[93m [LOG] [0m-> [96mMaxing out cart item quantities...[0m
+
+worker: Hitting Ctrl+C again will terminate all running tasks!
+
+worker: Warm shutdown (MainProcess)
+[2024-09-25 11:57:44,093: ERROR/MainProcess] Task Core.tasks.run_bot_task[2bbb56de-acf6-453d-a8ea-6a0edcd0c44b] raised unexpected: ProtocolError('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Traceback (most recent call last):
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connection.py", line 507, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1395, in getresponse
+    response.begin()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 325, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 286, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\app\trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\app\trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Core\tasks.py", line 13, in run_bot_task
+    bot.run()
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Bot\main.py", line 404, in run
+    self.checkout()
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Bot\main.py", line 213, in max_out_cart_items
+    time.sleep(5)
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 363, in get
+    self.execute(Command.GET, {"url": url})
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 306, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 326, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 843, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connection.py", line 507, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1395, in getresponse
+    response.begin()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 325, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 286, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+[2024-09-25 11:57:44,116: ERROR/MainProcess] Task Core.tasks.run_bot_task[4b65ffaa-84d8-4967-a0d3-0a4e8482560a] raised unexpected: ProtocolError('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+Traceback (most recent call last):
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connection.py", line 507, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1395, in getresponse
+    response.begin()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 325, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 286, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\app\trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\celery\app\trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Core\tasks.py", line 13, in run_bot_task
+    bot.run()
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Bot\main.py", line 403, in run
+    self.max_out_cart_items()
+  File "C:\Users\Admin\Desktop\projects\medimops\medimops-backend\MedimopsBackend\Bot\main.py", line 206, in add_products_to_cart
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 414, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 306, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 326, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 843, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\.virtualenvs\medimops-backend-5DqIWMYW\Lib\site-packages\urllib3\connection.py", line 507, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1395, in getresponse
+    response.begin()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 325, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 286, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))

@@ -3,3 +3,19 @@
 [2024-09-25 11:21:08,668: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
 [2024-09-25 11:32:48,668: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
 [2024-09-25 11:44:28,706: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
+[2024-09-25 11:56:08,675: INFO/MainProcess] Scheduler: Sending due task run-bot-task-every-2-hours (Core.tasks.run_bot_task)
+celery beat v5.4.0 (opalescent) is starting.
+__    -    ... __   -        _
+LocalTime -> 2024-09-25 11:01:19
+Configuration ->
+    . broker -> amqp://guest:**@localhost:5672//
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%INFO
+    . maxinterval -> 5.00 minutes (300s)
+elery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%INFO
+    . maxinterval -> 5.00 minutes (300s)

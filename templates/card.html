@@ -6,6 +6,16 @@
         <form method="POST">
             {% csrf_token %}
 
+            <div class="mb-3">
+                <label for="card_type" class="form-label">Card Type:</label>
+                <select class="form-control" id="card_type" name="card_type" required>
+                    <option value="" selected disabled>Card type</option>
+                    {% for i in card_types %}
+                        <option value="{{i}}" {% if i == bot.card_type %} selected {% endif %}>{{i}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <!-- Card Holder Name Field -->
             <div class="mb-3">
                 <label for="card_holder_name" class="form-label">Card Holder Name:</label>

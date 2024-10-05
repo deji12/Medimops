@@ -7,7 +7,9 @@ from gologin import GoLogin
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .config import *
-from Core.models import BotControl
+from Core.models import BotControl, ProductMaxPrice
+import re
+from decimal import Decimal
 
 class Bot:
     def __init__(self, email, password, gologin_token, profile_id, headless=False):
@@ -156,10 +158,34 @@ class Bot:
             # Check if the product has an active switch (switch__box--on)
             switch_box = product.find_element(By.CLASS_NAME, "switch__box")
             if "switch__box--on" in switch_box.get_attribute("class"):
-                # Extract the URL of the product
-                product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
-                url = product_link.get_attribute("href")
-                active_product_urls.append(url)
+
+                # Extract the name of the product
+                name_element = product.find_element(By.XPATH, './/div[@class="notice-list-product__title"]')
+                product_name = name_element.text
+
+                # make sure price is not greater than limit
+                price_element = product.find_element(By.XPATH, './/span[@class="notice-list-product__price"]')
+                price_text = price_element.text
+
+                # Use a regular expression to extract only the numeric part (integer or float)
+                price_number = re.findall(r"\d+,\d+|\d+", price_text)[0].replace(",", ".")
+                price_value = float(price_number)
+
+                try:
+                    # check if max price exists for product
+                    product_max_price = ProductMaxPrice.objects.get(item_name=product_name)
+                    if Decimal(price_value) <= product_max_price:
+                        # Extract the URL of the product
+                        product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
+                        url = product_link.get_attribute("href")
+                        active_product_urls.append(url)
+
+                except ProductMaxPrice.DoesNotExist:
+
+                    # Product has no max price set
+                    product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
+                    url = product_link.get_attribute("href")
+                    active_product_urls.append(url)
 
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Processing {len(active_product_urls)} products...{ENDC}")
 

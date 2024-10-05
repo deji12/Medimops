@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
-from .models import BotControl
+from .models import BotControl, ProductMaxPrice
 from decimal import Decimal
 from cryptography.fernet import Fernet
 
@@ -46,6 +46,8 @@ def Home(request):
 @login_required
 def CardDetails(request):
 
+    card_types = ["Visa", "Mastercard", "American Express"]
+
     bot_controller = BotControl.objects.last()
 
     if request.method == "POST":
@@ -54,6 +56,10 @@ def CardDetails(request):
         expiry_month = request.POST.get('expiration_month')
         expiry_year = request.POST.get('expiration_year')
         cvv = request.POST.get('cvv')
+        card_type = request.POST.get('card_type')
+
+        if card_type and bot_controller.card_type != card_type:
+            bot_controller.card_type = card_type
 
         # f = Fernet(bot_controller.key)
 
@@ -86,7 +92,8 @@ def CardDetails(request):
     context = {
         'months': months,
         'years': years,
-        'bot': bot_controller
+        'bot': bot_controller,
+        "card_types": card_types
     }
 
     return render(request, 'card.html', context)
@@ -164,3 +171,67 @@ def Account(request):
     }
     
     return render(request, 'account.html', context)
+
+@login_required
+def ProductsMaxPrice(request):
+    
+    product_max_prices = ProductMaxPrice.objects.all().order_by('-date')
+    context = {
+        "max_prices": product_max_prices
+    }
+    return render(request, 'max-prices.html', context)
+
+@login_required
+def AddMaxPriceItem(request):
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        status = request.POST.get('status')
+
+        new_max_price = ProductMaxPrice(
+            item_name = name,
+            max_price = price, 
+        )
+
+        if status == 'on':
+            new_max_price.status = True
+
+        new_max_price.save()
+        messages.success(request, 'Max price item added successfully')
+        return redirect('product-max-price')
+    
+    return render(request, 'add-max-price.html')
+
+@login_required
+def UpdateMaxPriceItem(request, item_id):
+
+    try:
+        max_price_item = ProductMaxPrice.objects.get(id=item_id)
+    except ProductMaxPrice.DoesNotExist:
+        messages.error(request, 'Max price item not found')
+        return redirect('product-max-price')
+    
+    if request.method == 'POST':
+
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        status = request.POST.get('status')
+
+        max_price_item.item_name = name
+        max_price_item.max_price = price
+        
+        if status == 'on':
+            max_price_item.status = True
+        else:
+            max_price_item.status = False
+
+        max_price_item.save()
+        messages.success(request, 'Max price item updated successfully')
+        return redirect('product-max-price')
+    
+    context = {
+        "max_price_item": max_price_item
+    }
+    
+    return render(request, 'add-max-price.html', context)
