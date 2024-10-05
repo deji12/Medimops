@@ -174,7 +174,7 @@ class Bot:
 
                 try:
                     # check if max price exists for product
-                    product_max_price = ProductMaxPrice.objects.get(item_name=product_name)
+                    product_max_price = ProductMaxPrice.objects.get(item_name=product_name, status=True)
                     if Decimal(price_value) <= product_max_price:
                         # Extract the URL of the product
                         product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
