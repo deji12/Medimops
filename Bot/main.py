@@ -12,7 +12,7 @@ import re
 from decimal import Decimal
 
 class Bot:
-    def __init__(self, email, password, gologin_token, profile_id, headless=False):
+    def __init__(self, email, password, gologin_token, profile_id, headless=True):
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Initializing Bot with GoLogin profile...{ENDC}")
 
         # Setting parameters
@@ -38,6 +38,7 @@ class Bot:
         # Set Chrome options to connect to GoLogin's profile
         chrome_options = Options()
         chrome_options.add_experimental_option("debuggerAddress", debugger_address)
+        chrome_options.binary_location = '/usr/bin/google-chrome'
 
         if headless:
             chrome_options.add_argument("--headless")
