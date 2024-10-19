@@ -77,11 +77,14 @@ WSGI_APPLICATION = 'MedimopsBackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'medimops',  # The name of the database you created
+        'USER': 'admin',  # The username you created
+        'PASSWORD': 'medimopsadmindb321',  # The password for the user
+        'HOST': 'localhost',  # Assuming the database is on the same server
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -131,7 +134,7 @@ LOGIN_URL= 'login'
 CELERY_BEAT_SCHEDULE = {
     'run-bot-task-every-2-hours': { 
         'task': 'Core.tasks.run_bot_task',  
-        'schedule': 600.0, 
+        'schedule': 7200.0, 
     },
 }
 
