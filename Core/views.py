@@ -6,7 +6,7 @@ from django.contrib import messages
 from datetime import datetime
 from .models import BotControl, ProductMaxPrice
 from decimal import Decimal
-from utils import send_email
+from .utils import send_email
 
 @login_required
 def Home(request):
