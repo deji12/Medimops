@@ -31,6 +31,13 @@ class Bot:
             "profile_path": PROFILE_PATH
         })
 
+        response = self.gl.downloadProfileZip(profile_id)
+        if not response.ok:
+            print(f"Failed to download profile: {response.status_code} {response.text}")
+        else:
+            print(f"Profile downloaded successfully: {response.content[:100]}")  # Print first 100 bytes
+
+
         # Get the debugger address to attach Selenium to GoLogin profile
         debugger_address = self.gl.start()
 
