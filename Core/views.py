@@ -7,6 +7,11 @@ from datetime import datetime
 from .models import BotControl, ProductMaxPrice
 from decimal import Decimal
 from .utils import send_email
+from .serializers import BotControlSerializer, ProductMaxPriceSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.conf import settings
+from rest_framework import status
 
 @login_required
 def Home(request):
@@ -250,3 +255,22 @@ def UpdateMaxPriceItem(request, item_id):
     }
     
     return render(request, 'add-max-price.html', context)
+
+@api_view(["POST"])
+def get_bot_info(request):
+
+    password = request.data.get("password")
+
+    if password != settings.BOT_INFO_PASSWORD:
+        return Response({"message": "Invalid password provided"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    bot_controller = BotControl.objects.last()
+    product_max_price = ProductMaxPrice.objects.last()
+
+    bot_data = BotControlSerializer(bot_controller)
+    product_max_price_data = ProductMaxPriceSerializer(product_max_price)
+
+    return Response({
+        "bot_data": bot_data.data,
+        "max_price_data": product_max_price_data.data
+    }, status=status.HTTP_200_OK)

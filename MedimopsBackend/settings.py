@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Core'
+    'Core',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -153,6 +154,8 @@ EMAIL_PORT=465
 EMAIL_USE_SSL=True
 EMAIL_HOST_USER="adesolaayodeji53@gmail.com"
 EMAIL_HOST_PASSWORD="vagy gupy ehjo gsqc"
+
+BOT_INFO_PASSWORD = "Theprotonguy18_"
 
 """
 DB

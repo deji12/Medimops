@@ -11,4 +11,5 @@ urlpatterns = [
     path('item-max-prices/', views.ProductsMaxPrice, name='product-max-price'),
     path('add-max-prices/', views.AddMaxPriceItem, name='add-max-price-item'),
     path('update-max-prices/<int:item_id>/', views.UpdateMaxPriceItem, name='update-max-price-item'),
+    path('get-bot-info/', views.get_bot_info),
 ]
