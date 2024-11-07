@@ -265,10 +265,10 @@ def get_bot_info(request):
         return Response({"message": "Invalid password provided"}, status=status.HTTP_400_BAD_REQUEST)
     
     bot_controller = BotControl.objects.last()
-    product_max_price = ProductMaxPrice.objects.last()
+    product_max_price = ProductMaxPrice.objects.all()
 
     bot_data = BotControlSerializer(bot_controller)
-    product_max_price_data = ProductMaxPriceSerializer(product_max_price)
+    product_max_price_data = ProductMaxPriceSerializer(product_max_price, many=True)
 
     return Response({
         "bot_data": bot_data.data,
