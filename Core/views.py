@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
 from .models import BotControl, ProductMaxPrice
-from decimal import Decimal
 from .utils import send_email
 from .serializers import BotControlSerializer, ProductMaxPriceSerializer
 from rest_framework.response import Response
@@ -18,12 +17,9 @@ def Home(request):
     bot_controller = BotControl.objects.last()
 
     if request.method == "POST":
-        max_price = request.POST.get('max_price')
         is_running = request.POST.get('is_running')
 
-        if max_price and Decimal(str(max_price)) != bot_controller.max_price:
-            bot_controller.max_price = Decimal(str(max_price))
-            messages.success(request, f"Max price has been updated to {max_price}")
+        changed_entity = None
         
         if is_running and is_running == "True":
 
@@ -34,14 +30,18 @@ def Home(request):
 
             bot_controller.is_running = True
             messages.success(request, f"Bot is running successfully")
-            send_email(changed_entity='Running status')
+            changed_entity = 'Bot set to running'
 
         if is_running and is_running == "False":
             bot_controller.is_running = False
             messages.success(request, f"Bot has been stopped")
-            send_email(changed_entity='Running status')
+
+            if not changed_entity:
+                changed_entity = 'Bot shut down'
          
         bot_controller.save()
+
+        send_email(changed_entity=changed_entity)
         return redirect('home')
 
     context = {
@@ -168,14 +168,12 @@ def Account(request):
             bot_controller.save()
             messages.success(request, 'Email updated successfully')
 
-            send_email(changed_entity='Medimops account credentials')
-
         if password and not bot_controller.medimops_account_password:
             bot_controller.medimops_account_password = password
             bot_controller.save()
             messages.success(request, 'Password set successfully')
 
-            send_email(changed_entity='Medimops account credentials')
+        send_email(changed_entity='Medimops account credentials')
 
         return redirect('account')
     
