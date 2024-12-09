@@ -88,12 +88,12 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -163,7 +163,7 @@ admin
 medimopsadmindb321
 
 203.161.53.121
-7Jv3jiT81KZnL09Frf
+Ok8obJzZLP2Q18w9n1
 
 email
 xYe8KFVhyLYK39z

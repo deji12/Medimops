@@ -1,61 +1,64 @@
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from gologin import GoLogin
+import undetected_chromedriver as uc
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .config import *
-from Core.models import BotControl, ProductMaxPrice
-import re
 from decimal import Decimal
+import re
+import requests
+
+# COLOR FORMATS
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKCYAN = '\033[96m'
+OKGREEN = '\033[92m'
+WARNING = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+UNDERLINE = '\033[4m'
+
+DRIVER_PATH = './chromedriver.exe'
 
 class Bot:
-    def __init__(self, email, password, gologin_token, profile_id, headless=True):
-        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Initializing Bot with GoLogin profile...{ENDC}")
+    def __init__(self):
+        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Initializing Bot with credentials...{ENDC}")
+
+        # load config
+        self.load_config()
 
         # Setting parameters
-        self.email = email
-        self.password = password
-        self.login_url = "https://www.medimops.de/Mein-Konto/"
-        self.wishlist_url = "https://www.medimops.de/MeinMerkzettel/"
-        self.cart_url = "https://www.medimops.de/Warenkorb/"
-        self.control = BotControl.objects.last()
+        self.headless = self.config["bot_data"]["headless"]
+        self.email = self.config["bot_data"]["medimops_account_email"],
+        self.password = self.config["bot_data"]["medimops_account_password"]
+        self.login_url =  self.config["bot_data"]["login_url"]
+        self.wishlist_url =  self.config["bot_data"]["wishlist_url"]
+        self.cart_url =  self.config["bot_data"]["cart_url"]
 
-        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKBLUE}Initializing GoLogin with profile ID: {profile_id}{ENDC}")
-        # Initialize GoLogin
-        self.gl = GoLogin({
-            "token": gologin_token,
-            "profile_id": profile_id,
-            "profile_path": PROFILE_PATH
-        })
+        self.product_names = [i for i in self.config["max_price_data"]]
+       
+        # Set Chrome options 
+        chrome_options = uc.ChromeOptions()
+    
+        # Initialize the driver with undetectable chrome driver
+        self.driver = uc.Chrome(
+            use_subprocess=False, 
+            driver_executable_path=DRIVER_PATH, 
+            options=chrome_options,
+            headless = self.headless
+        )
 
-        response = self.gl.downloadProfileZip(profile_id)
-        if not response.ok:
-            print(f"Failed to download profile: {response.status_code} {response.text}")
-        else:
-            print(f"Profile downloaded successfully: {response.content[:100]}")  # Print first 100 bytes
+    def load_config(self):
 
+        response = requests.post(
+            "http://203.161.53.121:8000/get-bot-info/",
+            data={
+                "password": "Theprotonguy18_"
+            }
+        )
 
-        # Get the debugger address to attach Selenium to GoLogin profile
-        debugger_address = self.gl.start()
-
-        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKBLUE}Starting Chrome with GoLogin debugger address: {debugger_address}{ENDC}\n\n")
-        # Set Chrome options to connect to GoLogin's profile
-        chrome_options = Options()
-        chrome_options.add_experimental_option("debuggerAddress", debugger_address)
-        chrome_options.binary_location = '/usr/bin/google-chrome'
-
-        if headless:
-            chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--disable-gpu")  # Required for running headlessly on some platforms
-            chrome_options.add_argument("--no-sandbox")   # Required for running inside containers
-            chrome_options.add_argument("--disable-dev-shm-usage")  # Overcomes limited resource problems
-        
-
-        # Initialize the driver with the GoLogin profile
-        self.driver = webdriver.Chrome(service=CHROME_DRIVER_SERVICE, options=chrome_options)
+        self.config = response.json()
 
     def __handle_consent_popup(self):
         """Handle the consent popup using JavaScript execution."""
@@ -91,23 +94,44 @@ class Bot:
             enter_email.send_keys(self.email)
             print(f"🤖{WARNING} [LOG] {ENDC}-> {OKGREEN}Entered email successfully.{ENDC}")
 
+            time.sleep(5)
+
             # Insert password
             enter_password = self.driver.find_element(By.NAME, "lgn_pwd")
             enter_password.send_keys(self.password)
             print(f"🤖{WARNING} [LOG] {ENDC}-> {OKGREEN}Entered password successfully.{ENDC}")
 
+            time.sleep(5)
+
             # Hit the return key and submit login details
             enter_password.send_keys(Keys.RETURN)
-            time.sleep(5)
+            time.sleep(20)
             print(f"🤖{WARNING} [LOG] {ENDC}-> {OKGREEN}Login submitted.{ENDC}")
 
         except Exception as e:
             print(f"🤖{WARNING} [LOG] {ENDC}-> {FAIL}Login error: {e}{ENDC}")
 
+    def logout(self):
+
+        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Logging out of account...{ENDC}")
+
+        self.driver.get(self.login_url)
+
+        time.sleep(5)
+
+        try:
+            # Locate the "Log out" button by its class and click it
+            logout_button = self.driver.find_element(By.CLASS_NAME, "dashboard__button-secondary")
+            logout_button.click()
+            
+            # Optional wait to ensure page navigates after clicking logout
+            time.sleep(10)
+
+        except Exception as e:
+            print(f"🤖{WARNING} [ERROR] {ENDC}-> {OKCYAN}Failed to log out: {e}{ENDC}")
+
     def __add_wishlist_items_to_cart(self):
         """Retrieve products where the back again email switch is on and add them to the cart."""
-
-        ITEM_MAX_PRICE = self.control.max_price
         
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Navigating to wishlist page...{ENDC}")
         self.driver.get(self.wishlist_url)
@@ -140,7 +164,7 @@ class Bot:
                         }
                     }
                 });
-            """, ITEM_MAX_PRICE)
+            """, self.config["cart"]["item_max_price"])
 
             print(f"🤖{WARNING} [LOG] {ENDC}-> {OKGREEN}Wishlist items added to cart.{ENDC}")
             time.sleep(5)
@@ -179,17 +203,20 @@ class Bot:
                 price_number = re.findall(r"\d+,\d+|\d+", price_text)[0].replace(",", ".")
                 price_value = float(price_number)
 
-                try:
-                    # check if max price exists for product
-                    product_max_price = ProductMaxPrice.objects.get(item_name=product_name, status=True)
-                    if Decimal(price_value) <= product_max_price.max_price:
+                # check to see if product has max price and gtet it
+                product_max_price = self.get_max_price_item(product_name)
+
+                # make sure bot has loaded max pricrs for product and make sure that product name is in list
+                if self.product_names and product_max_price is not None:
+
+                    # make sure the product price is not above set limit 
+                    if Decimal(price_value) <= product_max_price:
                         # Extract the URL of the product
                         product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
                         url = product_link.get_attribute("href")
                         active_product_urls.append(url)
 
-                except ProductMaxPrice.DoesNotExist:
-
+                else:
                     # Product has no max price set
                     product_link = product.find_element(By.TAG_NAME, "a")  # Adjust if necessary
                     url = product_link.get_attribute("href")
@@ -199,6 +226,21 @@ class Bot:
 
         return active_product_urls
     
+    def get_max_price_item(self, item_name):
+
+        """
+        
+        loop through max product data to the max price of a product
+        Returns none if item name is not in the max price list
+        
+        """
+        
+        for max_price_data_item in  self.config["max_price_data"]:
+            if item_name == max_price_data_item["item_name"]:
+                return Decimal(max_price_data_item["max_price"])
+            
+        return None
+
     def add_products_to_cart(self):
 
         products = self.__get_product_urls_from_wishlist()
@@ -212,12 +254,12 @@ class Bot:
             time.sleep(3)  # Wait for the page to load (adjust as necessary)
 
             script = '''
-                var variantLinks = document.getElementsByClassName('variant-select__variant');
+                var variantLinks = document.getElementsByClassName('VariantSelect_desktopVariant__fq62h');
                 for (var i = 0; i < variantLinks.length; i++) {
                     variantLinks[i].click();  // Click each variant
                     
                     // Scroll to and click the "Add to Cart" button
-                    var addToCartButton = document.querySelector('.add-to-cart');
+                    var addToCartButton = document.querySelector('.AddToCart_container__6uz0c');
                     if (addToCartButton) {
                         addToCartButton.scrollIntoView();
                         addToCartButton.click();
@@ -229,14 +271,26 @@ class Bot:
                     // Delay in-between clicks (simulating wait)
                     var start = new Date().getTime();
                     var end = start;
-                    while (end < start + 5000) {  // 5-second wait
+                    while (end < start + 15000) {  // 5-second wait
                         end = new Date().getTime();
                     }
                 }
+                const doneIndicator = document.createElement('div');
+                doneIndicator.id = 'incrementDone';
+                document.body.appendChild(doneIndicator);
             '''
-            
-            # Execute the script in Selenium
-            self.driver.execute_script(script)
+
+            try:
+                self.driver.execute_script(script)
+            except Exception as e:
+                if "script timeout" in str(e).lower():  # Check for timeout specifically
+                    print("🤖 Script timed out, waiting for completion...")
+                    WebDriverWait(self.driver, 5000).until(
+                        EC.presence_of_element_located((By.ID, 'incrementDone'))
+                    )
+                    print("🤖 Script completed successfully after timeout.")
+                else:
+                    print(f"🤖 Error adding products to cart: {e}")
 
             print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Added product variants to cart successfully{ENDC}")
 
@@ -244,7 +298,7 @@ class Bot:
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Maxing out cart item quantities...{ENDC}")
 
         self.driver.get(self.cart_url)
-        time.sleep(5)
+        time.sleep(15)
 
         # Define JavaScript to handle quantity increase with a promise
         js_code = r"""
@@ -255,7 +309,7 @@ class Bot:
                 let previousError = false;
                 let maxReached = false;
                 let incrementCount = 1; // Initialize the increment counter
-                const maxIncrements = """ + str(MAX_PRODUCT_INCREMENTS) + r""";  
+                const maxIncrements = """ + str(self.config['bot_data']['max_product_increments']) + r""";  
 
                 while (!maxReached && incrementCount < maxIncrements) {
                     increaseButton.click();
@@ -341,7 +395,7 @@ class Bot:
         card_type_select = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardType'))
         )
-        card_type_select.send_keys(self.control.card_type)
+        card_type_select.send_keys(self.config["bot_data"]["card_type"])
 
         time.sleep(2)
 
@@ -352,7 +406,7 @@ class Bot:
         
         account_holder_input.send_keys(Keys.CONTROL + "a")  # Select all text
         account_holder_input.send_keys(Keys.DELETE)  # Delete the selected text
-        account_holder_input.send_keys(self.control.card_holder_name)
+        account_holder_input.send_keys(self.config["bot_data"]["card_holder_name"])
 
         time.sleep(2)
 
@@ -363,7 +417,7 @@ class Bot:
         self.driver.switch_to.frame(card_number_iframe)
         card_number_input = self.driver.find_element(By.XPATH, "//input[@type='text']")
         card_number_input.clear()
-        card_number_input.send_keys(self.control.card_number)
+        card_number_input.send_keys(self.config["bot_data"]["card_number"])
         self.driver.switch_to.default_content()
 
         time.sleep(2)
@@ -380,7 +434,7 @@ class Bot:
         expiry_month_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardexpiremonth'))
         )
-        expiry_month_input.send_keys(str(self.control.expiration_month))
+        expiry_month_input.send_keys(str(self.config["bot_data"]["expiration_month"]))
 
         self.driver.switch_to.default_content()
 
@@ -394,7 +448,7 @@ class Bot:
         expiry_year_input =  WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'cardexpireyear'))
         )
-        expiry_year_input.send_keys(str(self.control.expiration_year))
+        expiry_year_input.send_keys(str(self.config["bot_data"]["expiration_year"]))
         
         self.driver.switch_to.default_content()
 
@@ -409,7 +463,7 @@ class Bot:
             EC.presence_of_element_located((By.ID, 'cardcvc2'))
         )
         cvv_input.clear()
-        cvv_input.send_keys(str(self.control.cvv))
+        cvv_input.send_keys(str(self.config["bot_data"]["cvv"]))
 
         self.driver.switch_to.default_content()
 
@@ -422,22 +476,23 @@ class Bot:
         checkout_button = self.driver.find_element(By.CLASS_NAME, 'checkout-navigation-buttons__button-next')
         checkout_button.click()
 
-        time.sleep(100)
+        time.sleep(120)
+
+        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKBLUE}Completed checkout. Waiting 1 hour to run again...{ENDC}\n\n")
 
     def stop(self):
-        """Stop the GoLogin profile session."""
-        print(f"🤖{WARNING} [LOG] {ENDC}-> {OKCYAN}Stopping the bot and GoLogin session...{ENDC}")
+       
         self.driver.quit()
-        self.gl.stop()
+      
         print(f"🤖{WARNING} [LOG] {ENDC}-> {OKGREEN}Bot stopped successfully.{ENDC}")
 
     def run(self):
+
         self.login()
         self.add_products_to_cart()
         self.max_out_cart_items()
         self.checkout()
+        self.logout()
+        
+        # stop the bot
         self.stop()
-
-# Instantiate and use the bot
-# bot = Bot(EMAIL, PASSWORD, GOLOGIN_TOKEN, PROFILE_ID)
-# bot.run()
